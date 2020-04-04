@@ -1,22 +1,24 @@
-let canvas = document.getElementById('drop-area')
+const canvas = document.getElementById('drop-area')
 
-var ctx = canvas.getContext("2d");
-ctx.strokeRect(50,50,50,50); //x y width height
+const ctx = canvas.getContext("2d");
+ //x y width height
 
-let handleMouseMove = e =>{
+const handleMouseMove = e =>{
     console.log(e)
+    ctx.strokeRect(e.clientX,e.clientY,e.clientX,e.clientY);
 }
 
-let handleMouseClick = e => {
+const handleMouseUp = e => {
+    canvas.removeEventListener("mousemove", handleMouseMove)
+}
+
+const handleMouseDown = e => {
     console.log(e)
     canvas.addEventListener("mousemove", handleMouseMove)
+    canvas.addEventListener("mouseup", handleMouseUp)
 }
 
+canvas.addEventListener('mousedown', handleMouseDown)
 
-canvas.addEventListener('mousedown', handleMouseClick)
-//   dropArea.addEventListener('dragenter', handlerFunction, false) //
-//   dropArea.addEventListener('dragleave', handlerFunction, false)
-//   dropArea.addEventListener('dragover', handlerFunction, false)
-//   dropArea.addEventListener('drop', handlerFunction, false) // this will remove the box?
 
   
